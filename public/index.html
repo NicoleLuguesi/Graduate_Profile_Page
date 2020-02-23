@@ -1,0 +1,101 @@
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Test Page</title>
+</head>
+<body>
+    <h1>This is a webpage.</h1>
+
+    <form action="api/graduates" method="POST">
+    <input type="text" placeholder="Name" name="name"/>
+    <input type="text" placeholder="Email" name="email">
+    <input type="text" placeholder="Date Of Graduation" name="dateOfGraduation">
+    <input type="text" placeholder="Bio" name="bio">
+    <button id="submit" type="submit">Submit</button>
+    </form>
+
+    <button id="graduateButton">Click for Graduate Stories</button>
+    <div id="data">
+  
+
+<script>
+      
+        function getData() {
+
+            var xhr = new XMLHttpRequest();
+            console.log(xhr);
+
+            xhr.open('GET', 'http://localhost:3000/api/graduates', true);
+            xhr.onload = function () {
+            
+                if (xhr.status == 200) {
+
+                    var parsedData = JSON.parse(xhr.responseText); //
+
+                    console.log(parsedData); 
+                    var dataList = ""; 
+
+                    for (var i = 0; i < parsedData.length; i++) {
+                        dataList += "<p> Name: " + parsedData[i].name + "<br>" +
+                        "Email: " + parsedData[i].email + "<br>" +
+                        "Date of Graduation:" + parsedData[i].dateOfGraduation + "<br>" +
+                        "Bio: " + parsedData[i].bio + "</p>"
+                        console.log(dataList);
+                    }
+
+                    document.getElementById("data").innerHTML = dataList; 
+                } else {
+                    console.log("That is an error.");
+                }
+            }
+            xhr.send();
+        }
+            //  
+
+
+        // Get all users
+
+        // document.getElementById
+
+        // // <button onclick="myFunction()">Click me</button>
+
+        // var url = "http://localhost:3000/api/graduates";
+        // var xhr = new XMLHttpRequest()
+        // xhr.open('GET', url, true)
+        // xhr.onload = function() {
+        //     var users = JSON.parse(xhr.responseText);
+        //     if(xhr.readyState == 4 && xhr.status == "200") {
+        //         console.table(users);
+        //     } else {
+        //         console.error(users);
+        //     }
+        // }
+        // xhr.send(null);
+
+//        function postNewStudent() {
+
+//         fetch('http://localhost:5000/api/graduates', {
+//     method: 'POST',
+//     headers: {
+//         'Content-Type': 'application/json'
+//     },
+//     body: JSON.stringify({
+//         name: 'Ody the New Student',
+//         email: 'odywhycallery@gmail.com',
+//         dateOfGraduation: "04/20/2020",
+//         bio: "Cat school was not for me."
+//     })
+// })
+
+//     .then(res => res.json())
+//     .then(json => console.log(json))
+//     .catch(error => console.error('ERROR!', error));
+//         }
+
+    </script>
+</body>
+
+</html>
